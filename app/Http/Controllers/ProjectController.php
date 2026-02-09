@@ -2,19 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
+
 class ProjectController 
 {
     public function index()
     {
-        return view('portfolio');
-    }
+        // Ambil semua data dari tabel projects
+        $projects = Project::all();
 
-    public function dashboard()
-    {
-        if (!session('login')) {
-            return redirect('/login');
-        }
-
-        return view('dashboard');
+        // Kirim data ke view
+        return view('projects.index', compact('projects'));
     }
 }
